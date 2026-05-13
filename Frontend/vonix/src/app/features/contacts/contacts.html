@@ -1,0 +1,168 @@
+<section class="contact-page">
+  <div class="contact-container">
+    <div class="contact-info">
+      <span class="section-label">Hablemos de tu proyecto</span>
+
+      <h1>Contáctanos</h1>
+
+      <p class="contact-description">
+        ¿Tienes una idea en mente? Cuéntanos sobre tu proyecto y te ayudaremos
+        a convertirlo en una pieza real con impresión 3D de alta calidad.
+      </p>
+
+      <div class="contact-list">
+        @for (item of contactItems; track item.title) {
+          <article class="contact-item">
+            <div class="contact-icon">
+              <i [class]="item.icon"></i>
+            </div>
+
+            <div>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+
+              @if (item.detail) {
+                <span>{{ item.detail }}</span>
+              }
+            </div>
+          </article>
+        }
+      </div>
+
+      <article class="contact-preview-card">
+        <div class="preview-image">
+
+          <video src="/videos/video_2.mp4" autoplay></video>
+
+        </div>
+
+        <div class="preview-content">
+          <h3>Del diseño a la pieza final</h3>
+          <p>Así trabajamos tus ideas con precisión y calidad.</p>
+        </div>
+      </article>
+    </div>
+
+    <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="sendMessage()">
+      <div class="form-group">
+        <label for="fullName">Nombre completo</label>
+        <input
+          id="fullName"
+          type="text"
+          formControlName="fullName"
+          placeholder="Escribe tu nombre completo"
+        />
+
+        @if (isInvalid('fullName')) {
+          <small>Ingresa tu nombre completo.</small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="ejemplo@correo.com"
+        />
+
+        @if (isInvalid('email')) {
+          <small>Ingresa un correo válido.</small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="phone">WhatsApp / Teléfono</label>
+        <input
+          id="phone"
+          type="text"
+          formControlName="phone"
+          placeholder="+57 300 123 4567"
+        />
+
+        @if (isInvalid('phone')) {
+          <small>Ingresa un número de contacto.</small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="projectType">Tipo de proyecto</label>
+        <select id="projectType" formControlName="projectType">
+          <option value="" disabled>Selecciona una opción</option>
+
+          @for (type of projectTypes; track type) {
+            <option [value]="type">{{ type }}</option>
+          }
+        </select>
+
+        @if (isInvalid('projectType')) {
+          <small>Selecciona el tipo de proyecto.</small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="file">Adjuntar referencia <span>(opcional)</span></label>
+
+        <label class="upload-box" for="file">
+          <i class="pi pi-cloud-upload"></i>
+
+          @if (selectedFileName()) {
+            <strong>{{ selectedFileName() }}</strong>
+          } @else {
+            <div>
+              <strong>Haz clic o arrastra un archivo aquí</strong>
+              <p>Formatos: JPG, PNG, PDF, STL u OBJ</p>
+            </div>
+          }
+        </label>
+
+        <input
+          id="file"
+          class="file-input"
+          type="file"
+          accept=".jpg,.jpeg,.png,.pdf,.stl,.obj"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="message">Cuéntanos sobre tu idea</label>
+        <textarea
+          id="message"
+          rows="5"
+          formControlName="message"
+          placeholder="Describe tu proyecto, materiales, medidas aproximadas o cualquier detalle importante..."
+        ></textarea>
+
+        @if (isInvalid('message')) {
+          <small>Cuéntanos un poco más sobre tu proyecto.</small>
+        }
+      </div>
+
+      <button type="submit" class="submit-button" [disabled]="isSubmitting()">
+        @if (isSubmitting()) {
+          <i class="pi pi-spin pi-spinner"></i>
+          Enviando...
+        } @else {
+          <i class="pi pi-send"></i>
+          Enviar solicitud
+        }
+      </button>
+    </form>
+  </div>
+
+  <div class="contact-note">
+    <div class="note-icon">
+      <i class="pi pi-shield"></i>
+    </div>
+
+    <div>
+      <h3>Estamos para ayudarte</h3>
+      <p>
+        Respondemos lo antes posible y te ayudamos a convertir tu idea en una
+        pieza real.
+      </p>
+    </div>
+  </div>
+</section>

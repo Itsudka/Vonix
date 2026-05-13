@@ -1,0 +1,155 @@
+:host {
+  display: block;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.site-header {
+  width: 100%;
+  padding: 14px 7vw;
+  background: rgba(3, 6, 14, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.navbar {
+  width: 100%;
+  max-width: 1420px;
+  height: 58px;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+  border-radius: 12px;
+  background: rgba(10, 13, 22, 0.72);
+}
+
+.navbar-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar-logo img {
+  width: 180px;
+  height: auto;
+  display: block;
+}
+
+.navbar-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+}
+
+.navbar-menu a {
+  position: relative;
+  padding: 20px 0;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar-menu a:hover {
+  color: #ffffff;
+}
+
+.navbar-menu a.active {
+  color: #60a5fa;
+}
+
+.navbar-menu a.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 9px;
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: #3b82f6;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+}
+
+.quote-button {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.quote-button:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.quote-button i {
+  font-size: 0.85rem;
+}
+
+/* Responsive básico */
+
+@media (max-width: 900px) {
+  .site-header {
+    padding: 10px 20px;
+  }
+
+  .navbar {
+    height: auto;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .navbar-menu {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .navbar-menu a {
+    padding: 8px 0;
+  }
+
+  .navbar-menu a.active::after {
+    bottom: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .navbar-logo img {
+    width: 125px;
+  }
+
+  .navbar-menu {
+    gap: 14px;
+  }
+
+  .navbar-menu a {
+    font-size: 0.82rem;
+  }
+
+  .quote-button {
+    width: 100%;
+  }
+}

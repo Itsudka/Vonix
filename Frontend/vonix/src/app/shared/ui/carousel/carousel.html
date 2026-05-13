@@ -1,0 +1,24 @@
+<section class="project-carousel-section">
+  <div class="container">
+    <p-carousel
+      [value]="items()"
+      [numVisible]="numVisible()"
+      [numScroll]="numScroll()"
+      [circular]="true"
+      [autoplayInterval]="autoplayInterval()"
+      [responsiveOptions]="responsiveOptions"
+    >
+      <ng-template let-project pTemplate="item">
+        <div class="project-card">
+          <div class="project-image-wrapper">
+            <img
+              [src]="project.image_url"
+              [alt]="project.name"
+              class="project-image"
+            />
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</section>

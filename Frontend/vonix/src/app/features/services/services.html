@@ -1,0 +1,125 @@
+<section class="services-page">
+  <div class="services-hero">
+    <div class="hero-content">
+      <span class="section-label">Servicios de impresión 3D</span>
+
+      <h1>
+        Llevamos tus ideas del diseño a la
+        <span>pieza final</span>
+      </h1>
+
+      <p>
+        Creamos figuras personalizadas, prototipos y piezas funcionales con
+        impresión 3D de alta calidad. Te acompañamos desde la idea inicial hasta
+        la entrega final.
+      </p>
+
+      <div class="hero-actions">
+        <a routerLink="/contact" class="primary-button">
+          <i class="pi pi-send"></i>
+          Solicitar cotización
+        </a>
+
+        <a href="#" class="secondary-button">
+          <i class="pi pi-whatsapp"></i>
+          Escríbenos por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <div class="media-card main-video-card">
+        <video src="./videos/video_1.mp4" autoplay loop></video>
+
+        <div class="media-overlay">
+          <button type="button" class="play-button">
+            <i class="pi pi-play"></i>
+          </button>
+
+          <div>
+            <h3>Del archivo a la impresión</h3>
+            <p>Conoce cómo preparamos cada proyecto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="services-section">
+    <div class="section-header">
+      <span class="section-label">Nuestros servicios</span>
+      <h2>Soluciones 3D para cada tipo de proyecto</h2>
+    </div>
+
+    @if (isLoading()) {
+      <p class="loading-text">Cargando servicios...</p>
+    } @else if (services().length === 0) {
+      <p class="empty-text">Aún no hay servicios disponibles.</p>
+    } @else {
+      <div class="services-grid">
+        @for (service of services(); track service.id) {
+          <article class="service-card">
+            <div class="service-image">
+              <img [src]="service.image_url" [alt]="service.title" />
+            </div>
+
+            <div class="service-content">
+              <div class="service-icon">
+                <i [class]="service.icon"></i>
+              </div>
+
+              <h3>{{ service.title }}</h3>
+              <p>{{ service.description }}</p>
+
+              <a routerLink="/contact" class="service-link">
+                Cotizar servicio
+                <i class="pi pi-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="workflow-section">
+    <div class="workflow-header">
+      <span class="section-label">Así trabajamos</span>
+      <h2>Del archivo a la pieza real</h2>
+      <p>
+        Puedes enviarnos una idea, archivo STL, referencia visual o plano.
+        Nosotros revisamos la viabilidad y te orientamos para lograr el mejor
+        resultado.
+      </p>
+    </div>
+
+    <div class="workflow-grid">
+      @for (item of workflowItems; track item.number) {
+        <article class="workflow-card">
+          <span class="workflow-number">{{ item.number }}</span>
+
+          <div class="workflow-icon">
+            <i [class]="item.icon"></i>
+          </div>
+
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+
+  <div class="services-cta">
+    <div>
+      <h2>¿Tienes un archivo, plano o idea?</h2>
+      <p>
+        Nosotros te ayudamos a convertirla en una pieza física con impresión 3D.
+      </p>
+    </div>
+
+    <a routerLink="/contact" class="primary-button">
+      <i class="pi pi-send"></i>
+      Solicitar cotización
+    </a>
+  </div>
+</section>

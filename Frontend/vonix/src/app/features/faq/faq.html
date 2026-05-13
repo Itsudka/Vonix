@@ -1,0 +1,55 @@
+<section class="faq-page">
+  <div class="faq-container">
+    <div class="faq-intro">
+      <span class="section-label">Resolvemos tus dudas</span>
+
+      <h1>Preguntas frecuentes</h1>
+
+      <p>
+        Encuentra respuestas a las dudas más comunes sobre nuestros servicios
+        de impresión 3D, cotizaciones, formatos de archivo, tiempos y entregas.
+      </p>
+
+      <div class="faq-visual">
+        <div class="visual-cube"></div>
+        <div class="visual-platform">
+          <div class="visual-sphere"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-panel">
+      @if (isLoading()) {
+        <p class="loading-text">Cargando preguntas frecuentes...</p>
+      } @else if (faqs().length === 0) {
+        <p class="empty-text">
+          Aún no hay preguntas frecuentes disponibles.
+        </p>
+      } @else {
+        @for (faq of faqs(); track faq.id; let i = $index) {
+          <article class="faq-item" [class.active]="openIndex === i">
+            <button type="button" class="faq-question" (click)="toggleFaq(i)">
+              <span class="faq-icon">
+                @if (openIndex === i) {
+                  <i class="pi pi-minus"></i>
+                } @else {
+                  <i class="pi pi-plus"></i>
+                }
+              </span>
+
+              <span class="question-text">
+                {{ faq.question }}
+              </span>
+
+              <i class="pi pi-chevron-down chevron"></i>
+            </button>
+
+            <div class="faq-answer">
+              <p>{{ faq.answer }}</p>
+            </div>
+          </article>
+        }
+      }
+    </div>
+  </div>
+</section>

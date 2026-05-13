@@ -1,0 +1,98 @@
+<section class="projects-section">
+  @for (video of video; track video.alt) {
+    <div class="container-video">
+      <video
+        [src]="video.video"
+        [class]="video.className"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
+      </video>
+    </div>
+  }
+
+  <div class="projects-gallery-container">
+    <div class="projects-header">
+      <div>
+        <h1>Nuestros proyectos</h1>
+        <p>Selecciona una categoria para explorar nuestros trabajos</p>
+      </div>
+
+      <span class="projects-count">
+        {{ filteredProjects().length }} proyectos
+      </span>
+    </div>
+
+    <div class="projects-filters">
+      @for (category of categories; track category) {
+        <button
+          type="button"
+          [class.active]="selectedCategory() === category"
+          (click)="selectCategory(category)"
+        >
+          @if (category === 'Todos') {
+            <i class="pi pi-th-large"></i>
+          } @else if (category === 'Figura') {
+            <i class="pi pi-user"></i>
+          } @else if (category === 'Prototipo') {
+            <i class="pi pi-inbox"></i>
+          } @else if (category === 'Pieza Funcional') {
+            <i class="pi pi-shield"></i>
+          } @else {
+            <i class="pi pi-box"></i>
+          }
+
+          {{ category }}
+        </button>
+      }
+    </div>
+
+    @if (isLoading()) {
+      <p class="loading-text">Cargando proyectos...</p>
+    } @else if (filteredProjects().length === 0) {
+      <p class="empty-text">
+        No hay proyectos disponibles para esta categoría.
+      </p>
+    } @else {
+      <div class="projects-grid">
+        @for (project of filteredProjects(); track project.id) {
+          <article class="project-card">
+            @if (project.status) {
+              <span
+                class="project-status"
+                [class]="getStatusClass(project.status)"
+              >
+                <i [class]="getstatusIcon(project.status)"></i>
+                {{ project.status }}
+              </span>
+            }
+
+            <div class="project-info">
+              <h3>{{ project.name }}</h3>
+
+              <div class="project-meta">
+                <span>
+                  <i class="pi pi-box"></i>
+                  {{ project.category }} · {{ project.material }}
+                </span>
+              </div>
+            </div>
+
+            <img
+              [src]="project.image_url"
+              [alt]="project.name"
+              class="project-image"
+            />
+
+            <!-- <button type="button" class="details-button">
+              <i class="pi pi-eye"></i>
+              Solicitar
+            </button> -->
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

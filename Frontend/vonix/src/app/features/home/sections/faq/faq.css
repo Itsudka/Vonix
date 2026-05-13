@@ -1,0 +1,110 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.faq-panel {
+  width: 100%;
+  max-width: 1100px;
+  min-height: 460px;
+  margin: 0 auto;
+  padding: 48px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.14), transparent 46%),
+    linear-gradient(180deg, #111722 0%, #080c14 100%);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.3);
+}
+
+.faq-header {
+  margin-bottom: 24px;
+}
+
+.faq-header h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.faq-list {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.faq-item {
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.faq-item.active {
+  border-color: rgba(96, 165, 250, 0.55);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.faq-question {
+  width: 100%;
+  min-height: 58px;
+  padding: 0 20px;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-question i {
+  color: #60a5fa;
+  transition: transform 0.25s ease;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 130px;
+}
+
+.faq-answer p {
+  margin: 0;
+  padding: 0 20px 16px;
+  color: #c2c8d3;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.view-all-link {
+  width: fit-content;
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #60a5fa;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.view-all-link:hover {
+  color: #93c5fd;
+}

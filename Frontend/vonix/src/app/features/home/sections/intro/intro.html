@@ -1,0 +1,78 @@
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-copy">
+      <span class="hero-badge">
+        <i class="pi pi-sparkles"></i>
+        Diseño e impresión 3D personalizada
+      </span>
+
+      <h1>
+        Impresiones 3D
+        <span>personalizadas</span>
+      </h1>
+
+      <p>
+        Creamos figuras, prototipos y piezas especiales a medida con acabados
+        detallados y materiales resistentes.
+      </p>
+
+      <div class="hero-actions">
+        <a routerLink="/projects" class="btn btn-primary">
+          <i class="pi pi-eye"></i>
+          Ver proyectos
+        </a>
+
+        <a routerLink="/contact" class="btn btn-secondary">
+          <i class="pi pi-comments"></i>
+          Solicitar cotización
+        </a>
+      </div>
+
+      <div class="hero-features">
+        @for (feature of features; track feature.title) {
+          <article class="feature-card">
+            <div class="feature-icon">
+              <i [class]="feature.icon"></i>
+            </div>
+
+            <div>
+              <h3>{{ feature.title }}</h3>
+              <p>{{ feature.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="blue-line line-left"></div>
+      <div class="blue-line line-right"></div>
+
+      <div class="stage">
+        @if (isLoadingModels()) {
+          <div class="models-loading">
+            Cargando modelos...
+          </div>
+        } @else if (models().length === 0) {
+          <div class="models-loading">
+            No hay modelos disponibles.
+          </div>
+        } @else {
+          @for (model of models(); track model.id) {
+            <img
+              [src]="model.image_url"
+              [alt]="model.alt"
+              [class]="model.class_name"
+            />
+          }
+        }
+
+        <div class="gear gear-one"></div>
+        <div class="gear gear-two"></div>
+      </div>
+
+      <div class="platform"></div>
+      <div class="platform-glow"></div>
+    </div>
+  </div>
+</section>

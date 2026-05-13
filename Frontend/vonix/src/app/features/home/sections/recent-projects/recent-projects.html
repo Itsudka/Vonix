@@ -1,0 +1,25 @@
+<section class="recent-projects-section">
+  <div class="recent-projects-header">
+    <h2>Proyectos destacados</h2>
+
+    <a class="view-all-link" routerLink="/projects">
+      Ver todos los proyectos
+      <i class="pi pi-arrow-right"></i>
+    </a>
+  </div>
+
+  @if (isLoading()) {
+    <p class="loading-text">Cargando proyectos destacados...</p>
+  } @else if (featuredProjects().length === 0) {
+    <p class="empty-text">
+      Aún no hay proyectos destacados disponibles.
+    </p>
+  } @else {
+    <app-carousel
+      [items]="featuredProjects()"
+      [numVisible]="3"
+      [numScroll]="1"
+      [autoplayInterval]="3500"
+    />
+  }
+</section>

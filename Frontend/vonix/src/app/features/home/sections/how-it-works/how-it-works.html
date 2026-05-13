@@ -1,0 +1,28 @@
+<section class="how-it-works-section">
+  <div class="how-it-works-container">
+    <div class="how-it-works-header">
+      <h2>Cómo funciona</h2>
+    </div>
+
+    <div class="steps-wrapper">
+      @for (step of steps; track step.number) {
+        <article class="step-card">
+          <div class="step-top">
+            <div class="step-number">
+              {{ step.number }}
+            </div>
+
+            <div class="step-icon">
+              <i [class]="step.icon"></i>
+            </div>
+          </div>
+
+          <div class="step-content">
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

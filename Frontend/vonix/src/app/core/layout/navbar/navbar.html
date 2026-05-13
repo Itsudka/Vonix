@@ -1,0 +1,26 @@
+<header class="site-header">
+  <nav class="navbar">
+    <a routerLink="/" class="navbar-logo">
+      <img src="/vonix.png" alt="Logo de Vonix" />
+    </a>
+
+    <ul class="navbar-menu">
+      @for (item of items; track item.label) {
+        <li>
+          <a
+            [routerLink]="item.routerLink"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.exact ?? true }"
+          >
+            {{ item.label }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <a routerLink="/contact" class="quote-button">
+      <i class="pi pi-eye"></i>
+      Solicitar cotización
+    </a>
+  </nav>
+</header>

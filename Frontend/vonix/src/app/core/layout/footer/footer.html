@@ -1,0 +1,90 @@
+<footer class="footer">
+  <div class="footer-container">
+    <section class="footer-brand">
+      <a routerLink="/" class="footer-logo">
+        <img src="/vonix.png" alt="Logo de Vonix" />
+      </a>
+
+      <p>
+        Diseñamos e imprimimos ideas que cobran vida en 3 dimensiones.
+      </p>
+
+      <div class="social-links">
+        @for (social of socialLinks; track social.label) {
+          <a
+            [href]="social.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="social.label"
+            class="social-link"
+          >
+            <i [class]="social.icon"></i>
+          </a>
+        }
+      </div>
+    </section>
+
+    <section class="footer-column">
+      <h3>Navegación</h3>
+
+      <ul>
+        @for (link of navigationLinks; track link.label) {
+          <li>
+            <a [routerLink]="link.route">
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section class="footer-column">
+      <h3>Servicios</h3>
+
+      <ul>
+        @for (service of services; track service.label) {
+          <li>
+            <span>{{ service.label }}</span>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section class="footer-column footer-contact">
+      <h3>Contáctanos</h3>
+
+      <div class="contact-item">
+        <i class="pi pi-whatsapp"></i>
+        <div>
+          <span>WhatsApp</span>
+          <a href="https://wa.me/525512345678" target="_blank" rel="noopener noreferrer">
+            +52 55 1234 5678
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <i class="pi pi-envelope"></i>
+        <div>
+          <span>Correo</span>
+          <a href="mailto:hola@vonix3d.com">
+            hola@vonix3d.com
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-card">
+      <div class="footer-card-icon">
+        <i class="pi pi-box"></i>
+      </div>
+
+      <h3>Vonix 3D</h3>
+      <p>Diseño a otra dimensión.</p>
+    </section>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {{ currentYear }} Vonix 3D. Todos los derechos reservados.</p>
+  </div>
+</footer>
