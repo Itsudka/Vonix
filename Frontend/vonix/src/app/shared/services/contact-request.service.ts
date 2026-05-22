@@ -38,15 +38,17 @@ export class ContactRequestService {
       .replace(/\s+/g, '-')
       .replace(/[^a-z0-9.\-_]/g, '');
 
-    const filePath = `${Date.now()}-${safeFileName}`;
+    const filePath = `contact-requests/${Date.now()}-${safeFileName}`;
 
-    const { error } = await supabase.storage
-      .from('contact-files')
+    const { data, error } = await supabase.storage
+      .from('vonix-media')
       .upload(filePath, file, {
         cacheControl: '3600',
         upsert: false,
+        contentType: file.type,
       });
 
+    console.log('Respuesta upload contact file:', data);
     console.log('Error upload contact file:', error);
 
     if (error) {
@@ -54,10 +56,12 @@ export class ContactRequestService {
       return null;
     }
 
-    const { data } = supabase.storage
-      .from('contact-files')
+    const publicUrlResponse = supabase.storage
+      .from('vonix-media')
       .getPublicUrl(filePath);
 
-    return data.publicUrl;
+    console.log('URL pública archivo:', publicUrlResponse.data.publicUrl);
+
+    return publicUrlResponse.data.publicUrl;
   }
 }
